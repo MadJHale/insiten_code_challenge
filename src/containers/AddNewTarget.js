@@ -73,7 +73,8 @@ const renderFromHelper = ({ touched, error }) => {
 const AddNewTarget = props => {
     const {handleSubmit, submitting} = props;
     return (
-        <Form onSubmit={handleSubmit}>
+        <div className="newTargetForm">
+        <Form onSubmit={handleSubmit} className="targetForm">
         <div><Field name="name" component={RenderTextField} placeholder="Enter company name" label="Name" /></div>
         <div><Field name="description" component={RenderTextField} placeholder="Enter company description" label="Description" /></div>
         <div><Field name="location" component={RenderTextField} placeholder="Enter company location" label="Location" /></div>
@@ -108,7 +109,7 @@ const AddNewTarget = props => {
         <div><Field name="liquidity" component={RenderTextField} placeholder="Enter Financial Liquidity Ratio" label="Liquidity" /></div>
         <div><Field name="EBITDA" component={RenderTextField} placeholder="Enter EBITDA (Earnings before interest, tax, depreciation and amortization)" label="EBITDA" /></div>
         <div><button type="submit" disabled={submitting}>Add new company</button></div>
-        </Form>
+        </Form></div>
     )
 }
 
