@@ -1,14 +1,21 @@
 import { connect } from 'react-redux';
-import TargetList from '../components/TargetListTable';
+import TargetListTable from '../components/TargetListTable';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import {updateTable, editTarget, deleteTarget } from '../actions';
 
-const selector = formValueSelector('acquisitionTarget');
+const addNewTargets = (currentTargets, newTarget) => {
+    if(newTarget.acquisitionTarget && newTarget.acquisitionTarget.submitSucceeded == true) {
+        currentTargets.push({
+            id: ++currentTargets.length,
+            ...newTarget.acquisitionTarget.values
+        });
+    }
+    return currentTargets;
+}
 
 const mapStateToProps = state => ({
-  targets: state.targets
+  targets: addNewTargets(state.targets, state.form)
 });
-
 
 const mapDispatchToProps = dispatch => ({
     deleteItem(id) {
@@ -31,4 +38,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TargetList);
+)(TargetListTable);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -17,102 +17,39 @@ const styles = theme => ({
     },
   });
 
+const TargetListTable = ({targets, editItem, deleteItem}) => (
+    <div className="TargetList">
+        <Table>
+            <TableHead>
+                <TableRow>
+                    <TableCell>Company Name</TableCell>
+                    <TableCell>Description</TableCell>
+                    <TableCell>Location</TableCell>
+                    <TableCell>Acquisition Status</TableCell>
+                    <TableCell>Key Contact</TableCell>
+                    <TableCell>Financial Valuation</TableCell>
+                    <TableCell>Company Liquidity</TableCell>
+                    <TableCell>Company EBITDA</TableCell>
+                    <TableCell></TableCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                {targets.map(target => (
+                    <TableRow key={target.id}>
+                        <TableCell component="th" scope="row">{target.name}</TableCell>
+                        <TableCell>{target.description}</TableCell>
+                        <TableCell>{target.location}</TableCell>
+                        <TableCell>{target.status}</TableCell>
+                        <TableCell>{target.contact}</TableCell>
+                        <TableCell>{target.valuation}</TableCell>
+                        <TableCell>{target.liquidity}</TableCell>
+                        <TableCell>{target.EBITDA}</TableCell>
+                        <TableCell><button onClick={editItem(target)}>Edit</button><button onClick={deleteItem(target.id)}>Delete</button></TableCell>
+                    </TableRow>
+                ))}
+            </TableBody>
+        </Table>
+    </div>
+)
 
-
-class TargetList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            form: [],
-            targets: []
-        };
-    }
-    // componentDidUpdate(prevProps) {
-    //     if(prevProps.form !== this.props.form){
-    //         let newData = Object.assign({}, this.props.targets);
-    //         newData.push(this.props.form.acquisitionTarget.values)
-    //         this.setState({
-    //             targets: newData
-    //         });
-    //     }
-    // }
-
-    // handleTargetDelete(targetId) {
-    //     debugger;
-    //     let index = this.state.targets.indexOf(targetId);
-    //     this.state.targets.splice(index, 1);
-    //     this.setState(this.state.targets);
-    // }
-    render() {
-        return (
-            <div className="TargetList">
-                <Table data={this.props.targets}>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Company Name</TableCell>
-                            <TableCell>Description</TableCell>
-                            <TableCell>Location</TableCell>
-                            <TableCell>Acquisition Status</TableCell>
-                            <TableCell>Key Contact</TableCell>
-                            <TableCell>Financial Valuation</TableCell>
-                            <TableCell>Company Liquidity</TableCell>
-                            <TableCell>Company EBITDA</TableCell>
-                            <TableCell></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {this.props.targets.map(target => (
-                            <TableRow key={target.id}>
-                                <TableCell component="th" scope="row">{target.name}</TableCell>
-                                <TableCell>{target.description}</TableCell>
-                                <TableCell>{target.location}</TableCell>
-                                <TableCell>{target.status}</TableCell>
-                                <TableCell>{target.contact}</TableCell>
-                                <TableCell>{target.valuation}</TableCell>
-                                <TableCell>{target.liquidity}</TableCell>
-                                <TableCell>{target.EBITDA}</TableCell>
-                                <TableCell><button onClick={this.props.editItem(target.id)}>Edit</button><button onClick={this.props.deleteItem(target.id)}>Delete</button></TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </div>
-        )
-    }
-}
-// const TargetList = ({ targets, editTarget, deleteTarget }) => (
-//     <div className="TargetList">
-//         <Table data={targets}>
-//             <TableHead>
-//                 <TableRow>
-//                     <TableCell>Company Name</TableCell>
-//                     <TableCell>Description</TableCell>
-//                     <TableCell>Location</TableCell>
-//                     <TableCell>Acquisition Status</TableCell>
-//                     <TableCell>Key Contact</TableCell>
-//                     <TableCell>Financial Valuation</TableCell>
-//                     <TableCell>Company Liquidity</TableCell>
-//                     <TableCell>Company EBITDA</TableCell>
-//                     <TableCell></TableCell>
-//                 </TableRow>
-//             </TableHead>
-//             <TableBody>
-//                 {targets.map(target => (
-//                     <TableRow key={target.id}>
-//                         <TableCell component="th" scope="row">{target.name}</TableCell>
-//                         <TableCell>{target.description}</TableCell>
-//                         <TableCell>{target.location}</TableCell>
-//                         <TableCell>{target.status}</TableCell>
-//                         <TableCell>{target.contact}</TableCell>
-//                         <TableCell>{target.valuation}</TableCell>
-//                         <TableCell>{target.liquidity}</TableCell>
-//                         <TableCell>{target.EBITDA}</TableCell>
-//                         <TableCell><button onClick={editTarget}>Edit</button><button onClick={deleteTarget}>Delete</button></TableCell>
-//                     </TableRow>
-//                 ))}
-//             </TableBody>
-//         </Table>
-//     </div>
-// );
-
-export default withStyles(styles)(TargetList);
+export default withStyles(styles)(TargetListTable);

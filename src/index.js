@@ -11,7 +11,7 @@ import rootReducer from './reducers';
 const initialState = {
     targets: [
       {
-        "id": 1,
+        "id": 0,
         "name": "Sprint",
         "description": "American telecommunications company",
         "location": "Overland Park, Kansas",
@@ -22,7 +22,7 @@ const initialState = {
         "EBITDA": "13.13B"
       },
       {
-        "id": 2,
+        "id": 1,
         "name": "Fox Corporation",
         "description": "American television broadcasting company",
         "location": "New York City, New York",
@@ -33,7 +33,7 @@ const initialState = {
         "EBITDA": "2.54B"
       },
       {
-        "id": 3,
+        "id": 2,
         "name": "Coca-Cola Co",
         "description": "American multinational corporation",
         "location": "Atlanta, Georgia",

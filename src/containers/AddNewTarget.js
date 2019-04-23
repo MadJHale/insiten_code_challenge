@@ -1,15 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { reduxForm, Field, Form } from 'redux-form';
-import { connect } from 'react-redux';
-import { addNewTarget } from '../actions';
-import PropTypes from 'prop-types';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 
 const RenderTextField = ({
     label,
@@ -26,32 +17,6 @@ const RenderTextField = ({
         {...custom}
     />
 )
-
-const RenderSelectField = (
-    { input, label, meta: { touched, error }, children, ...custom },
-  ) => (
-    <Select
-      native
-      label={label}
-      errortext={touched && error}
-      {...input}
-      onChange={(event, index, value) => input.onChange(value)}
-      children={children}
-      {...custom}
-    />
-  );
-
-const renderFromHelper = ({ touched, error }) => {
-    if (!(touched && error)) {
-      return
-    } else {
-      return <FormHelperText>{touched && error}</FormHelperText>
-    }
-  }
-
-  const handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
-  };
 
 const AddNewTarget = props => {
     const {handleSubmit, submitting} = props;
