@@ -5,6 +5,7 @@ import { updateTable, editTarget, deleteTarget } from '../actions';
 
 const mapStateToProps = state => ({
   targets: state.targets,
+  editData: state.editData
 });
 
 const mapDispatchToProps = dispatch => ({

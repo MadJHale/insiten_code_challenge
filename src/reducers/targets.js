@@ -5,6 +5,7 @@ const targets = (state = [], action) => {
         }
         case 'EDIT_TARGET':
             return {
+                targets: [...state],
                 data: action.data
             };
         case 'DELETE_TARGET':

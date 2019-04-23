@@ -19,7 +19,8 @@ const styles = theme => ({
     },
   });
 
-const TargetListTable = ({targets, editItem, deleteItem}) => (
+const TargetListTable = ({targets, editItem, deleteItem}) => {
+    return (
     <div className="TargetList">
         <Paper elevation={1}>
         <Typography variant="h5" component="h3">Potential Target Companies</Typography>
@@ -48,13 +49,13 @@ const TargetListTable = ({targets, editItem, deleteItem}) => (
                             <TableCell>{target.valuation}</TableCell>
                             <TableCell>{target.liquidity}</TableCell>
                             <TableCell>{target.EBITDA}</TableCell>
-                            <TableCell><button onClick={editItem(target)}>Edit</button><button onClick={deleteItem(target.id)}>Delete</button></TableCell>
+                            <TableCell><button disabled onClick={editItem(target)}>Edit</button><button onClick={deleteItem(target.id)}>Delete</button></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
         </Paper>
     </div>
-)
+)}
 
 export default withStyles(styles)(TargetListTable);
