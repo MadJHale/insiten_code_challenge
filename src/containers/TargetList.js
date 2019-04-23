@@ -4,9 +4,10 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import {updateTable, editTarget, deleteTarget } from '../actions';
 
 const addNewTargets = (currentTargets, newTarget) => {
+    let newId = currentTargets[currentTargets.length - 1].id + 1;
     if(newTarget.acquisitionTarget && newTarget.acquisitionTarget.submitSucceeded == true) {
         currentTargets.push({
-            id: ++currentTargets.length,
+            id: newId++,
             ...newTarget.acquisitionTarget.values
         });
     }
