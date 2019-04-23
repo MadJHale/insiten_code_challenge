@@ -27,17 +27,32 @@
   padding: 20px;
 }
 
+header {
+  margin-bottom: 50px;
+}
+
 .inputFields {
   width: 100%;
 }
 
 .statusSelection {
-  display: inline-grid;
+  margin-top: 8px;
+  border: 0;
+  display: inline-flex;
+  padding: 0;
+  position: relative;
+  min-width: 0;
+  flex-direction: column;
+  vertical-align: top;
   width: 100%;
 }
 
+.statusSelection select {
+  border-radius: 0 0 4px 4px;
+}
+
 .TargetList {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 @keyframes App-logo-spin {

@@ -1,8 +1,7 @@
-let nextTargetId = 0;
-export const addNewTarget = text => ({
+export const addNewTarget = (nextTargetId, newTarget) => ({
   type: 'ADD_TARGET',
-  id: nextTargetId++,
-  text
+  id: nextTargetId,
+  newTarget
 })
 
 export const editTarget = data => ({

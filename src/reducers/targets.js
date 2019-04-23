@@ -5,7 +5,7 @@ const targets = (state = [], action) => {
                 ...state,
                 {
                 id: action.id,
-                companies: action.text
+                targets: action.newTarget
                 }
             ];
         case 'EDIT_TARGET':

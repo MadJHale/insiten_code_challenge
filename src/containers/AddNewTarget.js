@@ -37,7 +37,9 @@ const AddNewTarget = props => {
                         <Paper><Field name="location" component={RenderTextField} placeholder="Enter company location" label="Location" className="inputFields" /></Paper>
                     </Grid>
                     <Grid item xs={3}>
-                        <Paper className="statusSelection"><label>Choose Acquisition Status</label>
+                        <Paper>
+                            <div className="statusSelection">
+                            <label>Choose Acquisition Status</label>
                             <Field name="status" component="select" label="Status">
                                 <option />
                                 <option value="researching">Researching</option>
@@ -45,6 +47,7 @@ const AddNewTarget = props => {
                                 <option value="approved">Approved</option>
                                 <option value="declined">Declined</option>
                             </Field>
+                            </div>
                         </Paper>
                     </Grid>
                     </Grid>
