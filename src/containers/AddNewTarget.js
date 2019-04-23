@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import {addNewTarget } from '../actions';
 import { connect } from 'react-redux';
+import {reset} from 'redux-form';
 
 const RenderTextField = ({
     label,
@@ -30,11 +31,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     addTarget: value =>
-      dispatch({ type: 'ADD_TARGET', payload: value })
+      dispatch({ type: 'ADD_TARGET', payload: value }),
+    clearForm: () =>
+        dispatch(reset('acquisitionTarget'))
   });
 
 const AddNewTarget = props => {
-    const {handleSubmit, submitting, addTarget} = props;
+    const {handleSubmit, submitting, addTarget, clearForm} = props;
     return (
         <div className="newTargetForm">
             <Form onSubmit={handleSubmit((values) => addTarget(values))} className="targetForm">
@@ -80,6 +83,7 @@ const AddNewTarget = props => {
                     <Grid container spacing={24}>
                     <Grid item xs>
                         <Button type="submit" disabled={submitting} variant="contained" color="primary">Add new company</Button>
+                        <Button type="button" disabled={submitting} variant="contained" color="secondary" onClick={() => {clearForm();}}>Clear Form</Button>
                     </Grid>
                 </Grid>
             </Form>
