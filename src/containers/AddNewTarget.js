@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { reduxForm, Field, Form } from 'redux-form';
 import { connect } from 'react-redux';
 import { addNewTarget } from '../actions';
+import PropTypes from 'prop-types';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -26,28 +27,6 @@ const RenderTextField = ({
     />
 )
 
-// const RenderSelectField = ({
-//     input,
-//     label,
-//     meta: { touched, error },
-//     children,
-//     ...custom
-// }) => (
-//     <FormControl error={touched && error}>    
-//         <Select
-//         {...input}
-//         {...custom}
-//         inputProps={{
-//             name: 'status',
-//             id: 'status-simple'
-//         }}
-//         >
-//         {children}
-//         </Select>
-//         {renderFromHelper({ touched, error })}
-//     </FormControl>
-// )
-
 const RenderSelectField = (
     { input, label, meta: { touched, error }, children, ...custom },
   ) => (
@@ -70,40 +49,27 @@ const renderFromHelper = ({ touched, error }) => {
     }
   }
 
+  const handleChange = name => event => {
+    this.setState({ [name]: event.target.value });
+  };
+
 const AddNewTarget = props => {
     const {handleSubmit, submitting} = props;
     return (
         <div className="newTargetForm">
-        <Form onSubmit={handleSubmit} className="targetForm">
+        <Form onSubmit={handleSubmit(val => console.log(val))} className="targetForm">
         <div><Field name="name" component={RenderTextField} placeholder="Enter company name" label="Name" /></div>
         <div><Field name="description" component={RenderTextField} placeholder="Enter company description" label="Description" /></div>
         <div><Field name="location" component={RenderTextField} placeholder="Enter company location" label="Location" /></div>
-        <div><Field name="status" component={RenderSelectField} label="Status">
+        <div className="statusSelection"><label>Choose Acquisition Status</label>
+            <Field name="status" component="select" label="Status">
                 <option />
                 <option value="researching">Researching</option>
                 <option value="pending">Pending Approval</option>
                 <option value="approved">Approved</option>
                 <option value="declined">Declined</option>
-            </Field></div>
-        {/* <div><FormControl>
-          <InputLabel htmlFor="status-simple">Status</InputLabel>
-          <Select
-            value={this.state.status}
-            onChange={this.handleChange}
-            inputProps={{
-              name: 'status',
-              id: 'status-simple',
-            }}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="researching">Researching</MenuItem>
-            <MenuItem value="pending">Pending Approval</MenuItem>
-            <MenuItem value="approved">Approved</MenuItem>
-            <MenuItem value="declined">Declined</MenuItem>
-          </Select>
-        </FormControl></div> */}
+            </Field>
+        </div>
         <div><Field name="contact" component={RenderTextField} placeholder="Enter Key Contact" label="Contact" /></div>
         <div><Field name="valuation" component={RenderTextField} placeholder="Enter Financial Valuation" label="Valuation" /></div>
         <div><Field name="liquidity" component={RenderTextField} placeholder="Enter Financial Liquidity Ratio" label="Liquidity" /></div>
@@ -112,7 +78,6 @@ const AddNewTarget = props => {
         </Form></div>
     )
 }
-
 
 export default reduxForm({
     form: 'acquisitionTarget', // a unique identifier for this form

@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 
 import './index.css';
 import App from './components/App';
-import rootReducer from './reducers'
+import rootReducer from './reducers';
 
 const initialState = {
     targets: [
@@ -46,7 +46,7 @@ const initialState = {
     ]
   };
 
-const store = createStore(rootReducer, initialState)
+const store = createStore(rootReducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 render(
     <Provider store={store}>
         <App />

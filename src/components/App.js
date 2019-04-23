@@ -1,7 +1,7 @@
 import React from 'react';
 import AddNewTarget from '../containers/AddNewTarget';
 import TargetList from '../containers/TargetList';
-// import './App.css';
+import './App.css';
 
 const handleNewTarget = values => {
   console.log(values);
