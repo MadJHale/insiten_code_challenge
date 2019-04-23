@@ -1,13 +1,8 @@
 const targets = (state = [], action) => {
     switch (action.type) {
-        case 'ADD_TARGET':
-            return [
-                ...state,
-                {
-                id: action.id,
-                targets: action.newTarget
-                }
-            ];
+        case 'ADD_TARGET': {
+            return [...state, {id: state[state.length - 1].id + 1, ...action.payload}];
+        }
         case 'EDIT_TARGET':
             return {
                 data: action.data

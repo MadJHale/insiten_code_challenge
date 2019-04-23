@@ -1,6 +1,5 @@
-export const addNewTarget = (nextTargetId, newTarget) => ({
+export const addNewTarget = ( newTarget) => ({
   type: 'ADD_TARGET',
-  id: nextTargetId,
   newTarget
 })
 

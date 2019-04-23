@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import {addNewTarget } from '../actions';
+import { connect } from 'react-redux';
 
 const RenderTextField = ({
     label,
@@ -21,11 +23,21 @@ const RenderTextField = ({
     />
 )
 
+const mapStateToProps = state => ({
+    formData: state.form.acquisitionTarget
+  });
+  
+
+const mapDispatchToProps = dispatch => ({
+    addTarget: value =>
+      dispatch({ type: 'ADD_TARGET', payload: value })
+  });
+
 const AddNewTarget = props => {
-    const {handleSubmit, submitting} = props;
+    const {handleSubmit, submitting, addTarget} = props;
     return (
         <div className="newTargetForm">
-            <Form onSubmit={handleSubmit(val => console.log(val))} className="targetForm">
+            <Form onSubmit={handleSubmit((values) => addTarget(values))} className="targetForm">
                 <Grid container spacing={24}>
                     <Grid item xs={3}>
                         <Paper><Field name="name" component={RenderTextField} placeholder="Enter company name" label="Name" className="inputFields" /></Paper>
@@ -75,6 +87,11 @@ const AddNewTarget = props => {
     )
 }
 
-export default reduxForm({
+const AddReduxFormTarget = reduxForm({
     form: 'acquisitionTarget', // a unique identifier for this form
-  })(AddNewTarget);
+})(AddNewTarget);
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AddReduxFormTarget);
