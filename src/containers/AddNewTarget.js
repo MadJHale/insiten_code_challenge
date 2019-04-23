@@ -31,7 +31,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     addTarget: value =>
-      dispatch({ type: 'ADD_TARGET', payload: value }),
+      dispatch(addNewTarget(value)),
     clearForm: () =>
         dispatch(reset('acquisitionTarget'))
   });
