@@ -1,11 +1,23 @@
 import { connect } from 'react-redux';
 import TargetListTable from '../components/TargetListTable';
-import { updateTable, editTarget, deleteTarget } from '../actions';
+import { updateTarget, editTarget, deleteTarget, delTarget } from '../actions';
 
 const mapStateToProps = state => ({
   targets: state.targets,
   editData: state.editData
 });
+
+
+// const mapDispatchToProps = dispatch => ({
+//     deleteItem: (id) => 
+//         dispatch(deleteTarget(id)),
+//     editItem: (id) => 
+//         dispatch(editTarget(id)),
+//     updateItem: (id) => 
+//         dispatch(updateTarget(id)),
+//     delTarget: data => 
+//         dispatch(delTarget(data))
+//   });
 
 const mapDispatchToProps = dispatch => ({
     deleteItem(id) {
@@ -18,9 +30,15 @@ const mapDispatchToProps = dispatch => ({
             dispatch(editTarget(id));
         }
     },
-    updateList(id) {
+    updateItem(id) {
         return () => {
-            dispatch(updateTable(id));
+            debugger;
+            dispatch(updateTarget(id));
+        }
+    },
+    delTarget(data) {
+        return () => {
+            dispatch(delTarget(data));
         }
     }
 });

@@ -8,6 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import MaterialTable from 'material-table';
 
 const styles = theme => ({
     root: {
@@ -20,7 +21,18 @@ const styles = theme => ({
     },
   });
 
-const TargetListTable = ({targets, editItem, deleteItem}) => {
+  const columns = [
+    { title: 'Company Name', field: 'name' },
+    { title: 'Description', field: 'description' },
+    { title: 'Location', field: 'location' },
+    { title: 'Acquisition Status', field: 'status' },
+    { title: 'Key Contact', field: 'contact' },
+    { title: 'Financial Valuation', field: 'valuation', type: 'numeric' },
+    { title: 'Company Liquidity', field: 'liquidity', type: 'numeric' },
+    { title: 'Company EBITDA', field: 'EBITDA', type: 'numeric' },
+];
+const TargetListTable = ({targets, editItem, deleteItem, updateItem, delTarget}) => {
+    debugger;
     return (
     <div className="TargetList">
         <Typography variant="h5" component="h2" color="inherit">Potential Target Companies</Typography>
@@ -56,7 +68,64 @@ const TargetListTable = ({targets, editItem, deleteItem}) => {
                 </TableBody>
             </Table>
         </Paper>
-    </div>
+    
+    <MaterialTable
+        title="Basic Sorting Preview"
+        columns={columns}
+        data={targets.filter(target => target.editData !== true)}
+        editable={{
+            // onRowAdd: newData =>
+            //   new Promise((resolve, reject) => {
+            //     setTimeout(() => {
+            //       {
+            //         debugger;
+            //         const data = targets;
+            //         data.push(newData);
+            //         this.setState({ data }, () => resolve());
+            //       }
+            //       resolve()
+            //     }, 1000)
+            //   }),
+            onRowUpdate: (newData, oldData) =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  {
+                      debugger;
+                    //   updateItem(newData, oldData);
+                    const data = targets;
+                    const index = data.indexOf(oldData);
+                    data[index] = newData;
+                    this.setState({ data }, () => resolve());
+                  }
+                  resolve()
+                }, 1000)
+              }),
+            onRowDelete: oldData =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  {
+                    debugger;
+                    // let data = targets;
+                    // const index = data.indexOf(oldData);
+                    // data.splice(index, 1);
+                    // this.setState({ data }, () => resolve());
+                    delTarget(oldData, () => resolve());
+                  }
+                  resolve()
+                }, 1000)
+              }),
+            }}
+        options={{
+            sorting: true
+        }}
+        actions={[
+            // {
+            //   tooltip: 'Remove All Selected Users',
+            //   icon: 'delete',
+            //   onClick: (evt, data) => alert('You want to delete ' + data.length + ' rows')
+            // }
+          ]}
+    /></div>
 )}
 
 export default withStyles(styles)(TargetListTable);

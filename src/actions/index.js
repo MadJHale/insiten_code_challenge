@@ -13,7 +13,12 @@ export const deleteTarget = id => ({
     id: id
 })
 
-export const updateTable = text => ({
-    type: 'UPDATE_TABLE',
-    text
+export const updateTarget = (newData) => ({
+    type: 'UPDATE_TARGET',
+    newData
+})
+
+export const delTarget = (oldData) => ({
+    type: 'DEL_TARGET',
+    oldData
 })
