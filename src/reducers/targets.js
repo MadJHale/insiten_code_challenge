@@ -7,7 +7,11 @@ const targets = (state = [], action) => {
             return [...state, {editData: true, ...action.data}];
         case 'DELETE_TARGET':
             return state.filter(({ id }) => id !== action.id);
-
+        case 'UPDATE_CELL':
+                for (let i = action.fromRow; i <= action.toRow; i++) {
+                    state[i] = { ...state[i], ...action.updated };
+                }
+            return [...state]
         default:
             return state;
     }
