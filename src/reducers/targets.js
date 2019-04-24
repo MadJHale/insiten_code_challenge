@@ -4,7 +4,6 @@ const targets = (state = [], action) => {
             return [...state, {id: state.length >= 1 ? state[state.length - 1].id + 1 : 1, ...action.newTarget}];
         }
         case 'EDIT_TARGET':
-            debugger;
             return [...state, {editData: true, ...action.data}];
         case 'DELETE_TARGET':
             return state.filter(({ id }) => id !== action.id);
