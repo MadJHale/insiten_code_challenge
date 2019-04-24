@@ -33,9 +33,9 @@ const TargetListTable = ({targets, editItem, deleteItem}) => {
                         <TableCell>Location</TableCell>
                         <TableCell>Acquisition Status</TableCell>
                         <TableCell>Key Contact</TableCell>
-                        <TableCell>Financial Valuation</TableCell>
-                        <TableCell>Company Liquidity</TableCell>
-                        <TableCell>Company EBITDA</TableCell>
+                        <TableCell align="right">Financial Valuation</TableCell>
+                        <TableCell align="right">Company Liquidity</TableCell>
+                        <TableCell align="right">Company EBITDA</TableCell>
                         <TableCell>Actions</TableCell>
                     </TableRow>
                 </TableHead>
@@ -47,9 +47,9 @@ const TargetListTable = ({targets, editItem, deleteItem}) => {
                             <TableCell>{target.location}</TableCell>
                             <TableCell>{target.status}</TableCell>
                             <TableCell>{target.contact}</TableCell>
-                            <TableCell>{target.valuation}</TableCell>
-                            <TableCell>{target.liquidity}</TableCell>
-                            <TableCell>{target.EBITDA}</TableCell>
+                            <TableCell align="right">{target.valuation}</TableCell>
+                            <TableCell align="right">{target.liquidity}</TableCell>
+                            <TableCell align="right">{target.EBITDA}</TableCell>
                             <TableCell><Button size="small" variant="contained" onClick={editItem(target)}>Edit</Button><Button size="small" variant="contained" onClick={deleteItem(target.id)}>Delete</Button></TableCell>
                         </TableRow>
                     ))}

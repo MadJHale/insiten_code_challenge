@@ -1,7 +1,6 @@
 import React from 'react';
 import AddNewTarget from '../containers/AddNewTarget';
 import TargetList from '../containers/TargetList';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import './App.css';
 
