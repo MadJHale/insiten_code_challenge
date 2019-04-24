@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import TargetListTable from '../components/TargetListTable';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { updateTable, editTarget, deleteTarget } from '../actions';
 
 const mapStateToProps = state => ({

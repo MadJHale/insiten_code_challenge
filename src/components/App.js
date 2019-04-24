@@ -6,15 +6,13 @@ import Typography from '@material-ui/core/Typography';
 import './App.css';
 
 const App = () => (
-  <div className="InsitenApp">
-    <header>
-      <Paper elevation={1}>
-        <Typography variant="h3" component="h1">Insiten Potential Acquisition Target Companies</Typography>
-      </Paper>
-    </header>
-    <AddNewTarget />
-    <TargetList />
-  </div>
+    <div className="InsitenApp">
+      <header>
+        <Typography variant="h4" component="h2" color="inherit">Insiten Potential Acquisition Target Companies</Typography>
+      </header>
+      <AddNewTarget />
+      <TargetList />
+    </div>
 )
 
 export default App;

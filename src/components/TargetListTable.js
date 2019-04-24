@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
     root: {
@@ -22,8 +23,8 @@ const styles = theme => ({
 const TargetListTable = ({targets, editItem, deleteItem}) => {
     return (
     <div className="TargetList">
-        <Paper elevation={1}>
-        <Typography variant="h5" component="h3">Potential Target Companies</Typography>
+        <Typography variant="h5" component="h2" color="inherit">Potential Target Companies</Typography>
+        <Paper elevation={10}>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -35,11 +36,11 @@ const TargetListTable = ({targets, editItem, deleteItem}) => {
                         <TableCell>Financial Valuation</TableCell>
                         <TableCell>Company Liquidity</TableCell>
                         <TableCell>Company EBITDA</TableCell>
-                        <TableCell></TableCell>
+                        <TableCell>Actions</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {targets.map(target => (
+                    {targets.filter(target => target.editData !== true).map(target => (
                         <TableRow key={target.id}>
                             <TableCell component="th" scope="row">{target.name}</TableCell>
                             <TableCell>{target.description}</TableCell>
@@ -49,7 +50,7 @@ const TargetListTable = ({targets, editItem, deleteItem}) => {
                             <TableCell>{target.valuation}</TableCell>
                             <TableCell>{target.liquidity}</TableCell>
                             <TableCell>{target.EBITDA}</TableCell>
-                            <TableCell><button disabled onClick={editItem(target)}>Edit</button><button onClick={deleteItem(target.id)}>Delete</button></TableCell>
+                            <TableCell><Button size="small" variant="contained" onClick={editItem(target)}>Edit</Button><Button size="small" variant="contained" onClick={deleteItem(target.id)}>Delete</Button></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

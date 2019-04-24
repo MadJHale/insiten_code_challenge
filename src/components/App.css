@@ -29,14 +29,19 @@
 
 header {
   margin-bottom: 50px;
+  color: #9e9e9e;
 }
 
 .inputFields {
   width: 100%;
 }
 
+.newTargetForm {
+  padding: 20px;
+}
+
 .statusSelection {
-  margin-top: 8px;
+  margin: 0;
   border: 0;
   display: inline-flex;
   padding: 0;
@@ -47,12 +52,37 @@ header {
   width: 100%;
 }
 
+.statusSelection label {
+  transform: translate(0, 1.5px) scale(0.75);
+  transform-origin: top left;
+  margin-bottom: 8px;
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.TargetList button:first-of-type, .targetForm button:first-of-type {
+  margin-right: 10px;
+}
+
 .statusSelection select {
   border-radius: 0 0 4px 4px;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: text;
+  display: inline-flex;
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  line-height: 1.1875em;
+  align-items: center;
+}
+
+.TargetFormPaper {
+  margin: 0 20px;
 }
 
 .TargetList {
-  margin-top: 50px;
+  margin: 50px 20px 0 20px;
+  color: #757575;
 }
 
 @keyframes App-logo-spin {
