@@ -17,3 +17,10 @@ export const updateTable = text => ({
     type: 'UPDATE_TABLE',
     text
 })
+
+export const updatecell = (fromRow, toRow, updated) => ({
+    type: 'UPDATE_CELL',
+    fromRow,
+    toRow,
+    updated
+})

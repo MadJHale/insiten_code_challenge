@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import TargetListTable from '../components/TargetListTable';
-import { updateTable, editTarget, deleteTarget } from '../actions';
+import { updateTable, editTarget, deleteTarget, updatecell } from '../actions';
 
 const mapStateToProps = state => ({
   targets: state.targets,
-  editData: state.editData
+  editData: state.editData,
+  selectedIndexes: []
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,6 +23,9 @@ const mapDispatchToProps = dispatch => ({
         return () => {
             dispatch(updateTable(id));
         }
+    },
+    onGridRowUpdate({ fromRow, toRow, updated }) {
+        dispatch(updatecell(fromRow, toRow, updated));
     }
 });
 

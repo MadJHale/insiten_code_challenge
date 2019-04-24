@@ -25,8 +25,7 @@ const RenderTextField = ({
 )
 
 const mapStateToProps = state => ({
-    formData: state.form.acquisitionTarget,
-    editData: state.targets.filter(target => target.editData === true)[0]
+    formData: state.form.acquisitionTarget
   });
   
 
@@ -38,46 +37,45 @@ const mapDispatchToProps = dispatch => ({
   });
 
 const AddNewTarget = props => {
-    const {handleSubmit, submitting, addTarget, clearForm, editData} = props;
-    debugger;
+    const {handleSubmit, submitting, addTarget, clearForm} = props;
     return (
         <Paper elevation={10} className="TargetFormPaper">
             <div className="newTargetForm">
                 <Form onSubmit={handleSubmit((values) => { addTarget(values); clearForm(); })} className="targetForm">
                     <Grid container spacing={24}>
                         <Grid item xs={3}>
-                            <Field name="name" component={RenderTextField} placeholder="Enter company name" label="Name" className="inputFields" value={editData ? editData.name : ''} />
+                            <Field name="name" component={RenderTextField} placeholder="Enter company name" label="Name" className="inputFields" />
                         </Grid>
                         <Grid item xs={3}>
-                            <Field name="description" component={RenderTextField} placeholder="Enter company description" label="Description" className="inputFields" value={editData ? editData.description : ''} />
+                            <Field name="description" component={RenderTextField} placeholder="Enter company description" label="Description" className="inputFields" />
                         </Grid>
                         <Grid item xs={3}>
-                            <Field name="location" component={RenderTextField} placeholder="Enter company location" label="Location" className="inputFields" value={editData ? editData.location : ''} />
+                            <Field name="location" component={RenderTextField} placeholder="Enter company location" label="Location" className="inputFields" />
                         </Grid>
                         <Grid item xs={3}>
                             <div className="statusSelection">
                                 <label>Choose Acquisition Status</label>
-                                <Field name="status" component="select" label="Status" value={editData ? editData.status : ''}>
-                                    <option value="researching">Researching</option>
-                                    <option value="pending">Pending Approval</option>
-                                    <option value="approved">Approved</option>
-                                    <option value="declined">Declined</option>
+                                <Field name="status" component="select" label="Status">
+                                    <option value="Researching">Researching</option>
+                                    <option value="Pending Approval">Pending Approval</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="Declined">Declined</option>
                                 </Field>
                             </div>
                         </Grid>
                         </Grid>
                         <Grid container spacing={24}>
                         <Grid item xs>
-                            <Field name="contact" component={RenderTextField} placeholder="Enter Key Contact" label="Contact" className="inputFields" value={editData ? editData.contact : ''} />
+                            <Field name="contact" component={RenderTextField} placeholder="Enter Key Contact" label="Contact" className="inputFields" />
                         </Grid>
                         <Grid item xs>
-                            <Field name="valuation" component={RenderTextField} placeholder="Enter Financial Valuation" label="Valuation" className="inputFields" value={editData ? editData.valuation : ''} />
+                            <Field name="valuation" component={RenderTextField} placeholder="Enter Financial Valuation" label="Valuation" className="inputFields" />
                         </Grid>
                         <Grid item xs>
-                            <Field name="liquidity" component={RenderTextField} placeholder="Enter Financial Liquidity Ratio" label="Liquidity" className="inputFields" value={editData ? editData.liquidity : ''} />
+                            <Field name="liquidity" component={RenderTextField} placeholder="Enter Financial Liquidity Ratio" label="Liquidity" className="inputFields" />
                         </Grid>
                         <Grid item xs>
-                            <Field name="EBITDA" component={RenderTextField} placeholder="Enter EBITDA (Earnings before interest, tax, depreciation and amortization)" label="EBITDA" className="inputFields" value={editData ? editData.EBITDA : ''} />
+                            <Field name="EBITDA" component={RenderTextField} placeholder="Enter EBITDA (Earnings before interest, tax, depreciation and amortization)" label="EBITDA" className="inputFields" />
                         </Grid>
                         </Grid>
                         <Grid container spacing={24}>
