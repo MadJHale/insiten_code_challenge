@@ -3,6 +3,13 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ReactDataGrid from 'react-data-grid';
 import { Editors } from "react-data-grid-addons";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
     root: {
@@ -54,10 +61,11 @@ const getCellActions = (column, row) => {
     return cellActions[column.key];
   }
 
-const TargetListTable = ({targets, onGridRowUpdate}) => {
+const TargetListTable = ({targets, deleteItem, onGridRowUpdate}) => {
     return (
     <div className="TargetList">
         <Typography variant="h5" component="h2" color="inherit">Potential Target Companies</Typography>
+        <Typography variant="subheading" component="h2" color="inherit">This table is for editing</Typography>
         <ReactDataGrid
             columns={columns}
             rowGetter={i => targets[i]}
@@ -66,6 +74,39 @@ const TargetListTable = ({targets, onGridRowUpdate}) => {
             onGridRowsUpdated={onGridRowUpdate}
             getCellActions={getCellActions}
         />
+        <Typography variant="subheading" component="h2" color="inherit">This table is for deleting</Typography>
+        <Paper elevation={10}>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Company Name</TableCell>
+                        <TableCell>Description</TableCell>
+                        <TableCell>Location</TableCell>
+                        <TableCell>Acquisition Status</TableCell>
+                        <TableCell>Key Contact</TableCell>
+                        <TableCell align="right">Financial Valuation</TableCell>
+                        <TableCell align="right">Company Liquidity</TableCell>
+                        <TableCell align="right">Company EBITDA</TableCell>
+                        <TableCell>Actions</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {targets.filter(target => target.editData !== true).map(target => (
+                        <TableRow key={target.id}>
+                            <TableCell component="th" scope="row">{target.name}</TableCell>
+                            <TableCell>{target.description}</TableCell>
+                            <TableCell>{target.location}</TableCell>
+                            <TableCell>{target.status}</TableCell>
+                            <TableCell>{target.contact}</TableCell>
+                            <TableCell align="right">{target.valuation}</TableCell>
+                            <TableCell align="right">{target.liquidity}</TableCell>
+                            <TableCell align="right">{target.EBITDA}</TableCell>
+                            <TableCell><Button size="small" variant="contained" onClick={deleteItem(target.id)}>Delete</Button></TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </Paper>
 
     </div>
 )}
